@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Pandey | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #0b0b0f 0%, #1a1a2e 100%);
+      --card: #f8efe4;
+      --accent: #8b5cf6;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* NAVBAR */
+    header {
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    header:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    header h1 {
+      font-size: 1.3rem;
+      color: var(--text);
+      transition: color 0.3s ease;
+    }
+
+    header h1:hover {
+      color: var(--accent);
+    }
+
+    header span {
+      color: var(--accent);
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* LEFT CARD (enhanced) */
+    .id-card {
+      background: var(--card);
+      color: hsl(0, 0%, 7%);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 30px 80px rgba(139,92,246,0.25);
+      transform: rotate(-2deg);
+      transition: all 0.3s ease;
+      animation: slideInLeft 1s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px) rotate(-2deg); opacity: 0; }
+      to { transform: translateX(0) rotate(-2deg); opacity: 1; }
+    }
+
+    .id-card:hover {
+      transform: rotate(0deg) scale(1.02) translateY(-4px);
+      box-shadow: 0 50px 120px rgba(139,92,246,0.45), 0 0 60px rgba(139,92,246,0.08) inset;
+    }
+
+    .id-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .badge {
+      background: var(--accent);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      animation: pulse 2s infinite;
+      box-shadow: 0 6px 20px rgba(139,92,246,0.45), 0 0 30px rgba(139,92,246,0.15) inset;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .dob {
+      color: #333;
+      font-size: 0.85rem;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .photo {
+      height: 220px;
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      display: block;
+      animation: bob 6s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes bob {
+      0% { transform: rotate(-1deg) translateY(0); }
+      50% { transform: rotate(1deg) translateY(-6px); }
+      100% { transform: rotate(-1deg) translateY(0); }
+    }
+
+    /* decorative floating blob inside the card */
+    .blob {
+      position: absolute;
+      right: -80px;
+      top: -60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(139,92,246,0.85), rgba(139,92,246,0.45) 40%, rgba(139,92,246,0.15) 60%, transparent 70%);
+      filter: blur(36px);
+      mix-blend-mode: screen;
+      opacity: 0.95;
+      animation: floatBlob 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatBlob {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-18px,10px) scale(1.06); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    /* full-page animated background */
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 10% 20%, rgba(139,92,246,0.08), transparent 12%), radial-gradient(circle at 80% 70%, rgba(124,58,237,0.06), transparent 14%);
+      background-size: 120% 120%, 140% 140%;
+      animation: bgMove 18s linear infinite;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 0%, 100% 100%; }
+      50% { background-position: 50% 20%, 60% 80%; }
+      100% { background-position: 0% 0%, 100% 100%; }
+    }
+
+    .photo:hover {
+      transform: scale(1.05);
+    }
+
+    .role {
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: #555;
+    }
+
+    .name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-top: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .name:hover {
+      color: #7c3aed;
+    }
+
+    /* RIGHT TEXT */
+    .intro {
+      animation: slideInRight 1s ease-out;
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .intro h2 {
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .intro h3 {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .intro h3 span {
+      color: var(--accent);
+    }
+
+    .intro p {
+      max-width: 600px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    /* CTA BUTTON */
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+    }
+
+    .cta-button:hover {
+      background: #7c3aed;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139,92,246,0.5);
+    }
+
+    /* SOCIALS */
+    .socials {
+      display: flex;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .socials a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .socials a:hover {
+      color: #7c3aed;
+      transform: scale(1.1);
+    }
+
+    .socials a::before {
+      content: '🔗'; /* Placeholder icon; replace with actual icons if using a library */
+      font-size: 1.2rem;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .intro h3 {
+        font-size: 2.4rem;
+      }
+
+      .socials {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="animated-bg" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header>
+    <h1><span>▲</span> Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- LEFT CARD -->
+    <div class="id-card">
+      <div class="blob" aria-hidden="true"></div>
+      <div class="id-top">
+        <strong>09</strong>
+      
+        <div class="badge">12</div>
+      </div>
+
+      <img src="photo.jpg.jpeg" alt="Abhishek Raj" class="photo">
+
+      <div class="role">
+        WEB DEVELOPER • SOFTWARE • UI
+      </div>
+
+      <div class="name">
+        Abhishek
+      </div>
+    </div>
+
+    <!-- RIGHT INTRO -->
+    <div class="intro">
+      <h2>Hello, meet</h2>
+      <h3>
+        Abhishek Raj <br>
+        
+      </h3>
+
+      <p>
+        I am a passionate software and web developer with a strong interest in
+        minimal UI design and modern web experiences. I enjoy building clean,
+        fast, and engaging interfaces while constantly learning new technologies.
+      </p>
+
+      <a href="#contact" class="cta-button">Get In Touch</a>
+
+      <div class="socials">
+        <a href="https://www.instagram.com/_.abhiii_0912" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/abhishek-raj-160093319" target="_blank">LinkedIn</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhishek.raaj0912@gmail.com&su=Hello%20Abhishek&body=Hi%20Abhishek%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener">Email</a>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>
